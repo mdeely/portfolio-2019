@@ -103,7 +103,7 @@ nav {
 }
 
 @mixin projects_overlap($px_value) {
-	margin-top: -$px_value;
+	margin-top: $px_value;
 
 	.project__item {
 		margin-top: -$px_value;
@@ -209,13 +209,13 @@ nav {
 @media only screen and (min-width: 860px) {
 
 	nav {
-		padding: 90px;
+		padding: 45px;
 		 
 		 .nav__logo {
-		 	$size: 160px;
+		 	$size: 140px;
 		 	
-		 	right: 90px;
-		 	top: 90px;
+		 	right: 45px;
+		 	top: 45px;
 			padding: 30px;
 			width: $size;
 			height: $size;
@@ -223,12 +223,14 @@ nav {
 	}
 
 	.project__list {
+		@include projects_overlap(220px);
+
 
 		.project__item {
 			@include project_item_width(160px);
 
 			.project__visual {
-				$size: 840px;
+				$size: 640px;
 
 				width: $size + 1px;
 				height: $size;

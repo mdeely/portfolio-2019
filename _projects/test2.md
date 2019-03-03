@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Moving Company Reviews
+title: Illustrations
 background-image: "assets/img/trois.png"
-color: "#99B942"
+color: "#50446c"
 ---

@@ -18,14 +18,17 @@
 	</head>
   	<body>
   		<nav>
-  			<img src="assets/img/logo.svg" alt="Logo">
+  			<div class="nav__logo">
+  				<img src="assets/img/logo.svg" alt="Logo">
+  			</div>
   		</nav>
   		<section class="project__list">
 			{% for project in site.projects %}
 				<div class="project__item">
-					<div class="project__visual" style="background-image: url('{{ project.background-image }}')">
+					<div class="project__visual"">
+						<div class="project__image" style="background-image: url('{{ project.background-image }}')"></div>
 					</div>
-					<a href="{{project.url}}" class="project__title" style="color: {{project.color }}">{{ project.title }}</a>
+					<a href="{{project.url}}" class="project__title" style="color: {{project.color }}">{{ project.title }} →</a>
 				</div>
 			{% endfor %}
   		</section>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Marc Deely Portfolio</title>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+		<meta name="description" content="Marc Mathews Photography"/>
+		<meta name="robots" content="index,follow">
+		<meta property="og:title" content="Marc Mathews Photography"/>
+		<meta property="og:url" content="www.marcmathewsphotography.com" />
+		<meta property="og:image" content="" />
+		<meta property="og:image:alt" content="" />
+		<meta property="og:description" content="Marc Mathews PHotography" />
+		<meta property="og:type" content="website"/>
+		<link rel="stylesheet" href="/css/styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+	</head>
+  	<body>
+  		<nav>
+  			<img src="/assets/img/logo.svg" alt="Logo">
+  		</nav>
+  		<section class="project__list">
+			{% for project in site.projects %}
+				<div class="project__item">
+					<div class="project__visual" style="background-image: url('{{ project.background-image }}')">
+					</div>
+					<a href="{{project.url}}" class="project__title" style="color: {{project.color }}">{{ project.title }}</a>
+				</div>
+			{% endfor %}
+  		</section>
+  	</body>
+  </html>

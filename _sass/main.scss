@@ -113,7 +113,7 @@ nav {
 .project__list {
 	position: relative;
 	@include projects_overlap(20px);
-	margin-top: 100px;
+	margin-top: 200px;
 
 	a {
 		text-decoration: none;
@@ -184,7 +184,7 @@ nav {
 
 @media only screen and (min-width: 480px) {
 	.project__list {
-		@include projects_overlap(200px);
+		@include projects_overlap(100px);
 
 		.project__item {
 			@include project_item_width(160px);

@@ -103,7 +103,7 @@ nav {
 }
 
 @mixin projects_overlap($px_value) {
-	margin-top: $px_value;
+	margin-top: -$px_value;
 
 	.project__item {
 		margin-top: -$px_value;

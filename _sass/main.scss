@@ -76,7 +76,6 @@ nav {
 
 .project__list {
 	position: relative;
-	top: -80px;
 
 	a {
 		text-decoration: none;
@@ -97,6 +96,7 @@ nav {
 		width: 840px;
 		height: 840px;
 		background-size: cover;
+		background-position: center;
 		background-repeat: no-repeat;
 		border-radius: 0px 1000px;
 		left: -160px;
@@ -105,7 +105,6 @@ nav {
 
 	.project__title {
 		flex: 1;
-		margin-top: -100px;
 		font-family: Lato;
 		font-style: normal;
 		font-weight: 900;

@@ -13,24 +13,19 @@
 		<meta property="og:image:alt" content="" />
 		<meta property="og:description" content="Marc Mathews PHotography" />
 		<meta property="og:type" content="website"/>
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="/css/styles.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/assets/js/scripts.js"></script>
 	</head>
-  	<body>
+  	<body class="{{ page.title | slugify }}">
+		<script>document.body.className += ' active';</script>
   		<nav>
   			<div class="nav__logo">
-  				<img src="assets/img/logo.svg" alt="Logo">
+  				<div class="nav__page">{{ page.title }}</div>
+  				<img src="/assets/img/logo.svg" alt="Logo">
   			</div>
   		</nav>
-  		<section class="project__list">
-			{% for project in site.projects %}
-				<div class="project__item">
-					<div class="project__visual"">
-						<div class="project__image" style="background-image: url('{{ project.background-image }}')"></div>
-					</div>
-					<a href="{{project.url}}" class="project__title" style="color: {{project.color }}">{{ project.title }} →</a>
-				</div>
-			{% endfor %}
-  		</section>
+  		{{ content }}
   	</body>
   </html>

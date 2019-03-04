@@ -1,65 +1,49 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol, ul {
-  list-style: none;
-}
-blockquote, q {
-  quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-
+@import "vars.scss";
+@import "reset.scss";
+@import "project_list";
 
 html,
 body {
 	background-color: white;
 	overflow-x: hidden;
-	margin-bottom: 20vh;
 	font-family: Lato;
 	font-style: normal;
+
+	@each $project-name, $color in $project-color-map {
+		&.#{$project-name} {
+			background-color: $color;
+			height: 100vh;
+
+			&:after {
+				background-color: $color;
+				content: '';
+				opacity: 0;
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				transition: all 1s ease-out;
+				z-index: 1000;
+			}
+
+			.nav__logo {
+				background-color: white;
+			}
+
+			.nav__page {
+				// color: $color;
+				color: white;
+			}
+
+			&.active {
+				&:after {
+					opacity: 1;
+					transition: all 1s ease-out;
+				}
+			}
+		}
+	}
 }
 
 nav {
@@ -82,166 +66,29 @@ nav {
 		width: $size;
 		height: $size;
 		display:flex;
-		justify-content: center;
+		justify-content: flex-end;
+		align-items: center;
+
+		.nav__page {
+			margin-right: 80px;
+			font-weight: 900;
+			line-height: 12px;
+			font-size: 18px;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			line-height: 1;
+		    min-width: 50vw;
+		    text-align: right;
+		    padding-left: 40px;
+
+			&:empty {
+				display: none;
+			}
+		}
 
 		img {
 			height: auto;
 			max-width: 100%;
 		}
 	 }
-}
-
-@mixin project_item_width($width) {
-	width: calc(100% + #{$width});
-	left: -$width;
-
-	&:nth-child(even) {
-		left: 0;
-		right: -$width;
-		flex-direction: row-reverse;
-	}
-}
-
-@mixin projects_overlap($px_value) {
-	margin-top: $px_value;
-
-	.project__item {
-		margin-top: -$px_value;
-	}
-}
-
-.project__list {
-	position: relative;
-	@include projects_overlap(20px);
-	margin-top: 200px;
-
-	a {
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-  			text-underline-position: under;
-		}
-	}
-
-	.project__item {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		position: relative;
-
-		@include project_item_width(40px);
-
-
-		.project__visual {
-			$size: 240px;
-
-			width: $size;
-			height: $size;
-			position: relative;
-
-			.project__image {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				right: 0;
-				left: 0;
-				background-size: cover;
-				background-position: left;
-				background-repeat: no-repeat;
-				border-radius: 0px 1000px;
-				box-shadow: -16px 4px 74px rgba(0, 0, 0, 0.09), 0px 4px 4px rgba(0, 0, 0, 0.09);
-			}
-		}
-
-		.project__title {
-			flex: 1;
-			font-weight: 900;
-			line-height: 12px;
-			font-size: 12px;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			line-height: 1;
-			position: relative;
-			padding: 0 16px;
-		}
-
-		&:nth-child(even) {
-
-			.project__title {
-				text-align: right;
-			}
-
-			.project__visual {
-				.project__image{
-					left: 0;
-					border-radius: 1000px 0px;
-				}
-			}
-		}
-	}
-}
-
-@media only screen and (min-width: 480px) {
-	.project__list {
-		@include projects_overlap(100px);
-
-		.project__item {
-			@include project_item_width(160px);
-
-			.project__visual {
-				$size: 480px;
-
-				width: $size + 1px;
-				height: $size;
-
-				.project__image {
-				}
-			}
-
-			.project__title {
-				font-size: 14px;
-			}
-		}
-	}
-}
-
-@media only screen and (min-width: 860px) {
-
-	nav {
-		padding: 45px;
-		 
-		 .nav__logo {
-		 	$size: 140px;
-		 	
-		 	right: 45px;
-		 	top: 45px;
-			padding: 30px;
-			width: $size;
-			height: $size;
-		 }
-	}
-
-	.project__list {
-		@include projects_overlap(220px);
-
-
-		.project__item {
-			@include project_item_width(160px);
-
-			.project__visual {
-				$size: 640px;
-
-				width: $size + 1px;
-				height: $size;
-
-				.project__image {
-				}
-			}
-
-			.project__title {
-				font-size: 20px;
-			}
-		}
-	}
 }

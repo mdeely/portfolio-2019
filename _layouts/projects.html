@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<section class="project__list">
+{% for project in site.projects %}
+	<div class="project__item  {{ project.title | slugify }}">
+		<div class="project__visual"">
+			<div class="project__image" style="background-image: url('{{ project.background-image }}')"></div>
+		</div>
+		<a href="{{project.url}}" class="project__title">{{ project.title }} →</a>
+	</div>
+{% endfor %}
+</section>
